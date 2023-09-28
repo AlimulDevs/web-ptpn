@@ -1,0 +1,23 @@
+.header {
+    width: 400vh;
+    height: 80px;
+    background-color: #1F2A31;
+    position: fixed;
+    z-index: 0;
+}
+
+.burger-menu{
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-right: 12px;
+}
+
+ .burger-menu .icon{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+}

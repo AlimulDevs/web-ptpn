@@ -1,0 +1,134 @@
+.shadow-width {
+  padding-right: 260px;
+  transition: all 1s ease;
+}
+.shadow-width.hidden {
+  padding-right: 25px;
+}
+
+.sidebar {
+  width: 245px;
+  height: 100vh;
+  background-color: #3a4037;
+  position: fixed;
+  z-index: 1;
+  box-shadow: 1px 1px 4px black;
+  transform: translateX(-0);
+  transition: all 1s ease;
+}
+.sidebar.hidden {
+  transform: translateX(-260px);
+}
+
+.side-header .burger-menu {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 12px;
+}
+
+.sidebar .side-header .burger-menu .icon {
+  background-color: transparent;
+  border: none;
+  margin-right: -75px;
+}
+
+.side-header {
+  width: 100%;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2a31;
+}
+
+.side-header .photo-profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+.side-header .name {
+  color: white;
+  font-size: 15px;
+}
+
+.side-header .role {
+  color: rgb(173, 169, 169);
+  font-size: 10px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-menu .list-menu {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  padding: 15px;
+  gap: 15px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-menu .list-menu:hover {
+  background-color: #47a5de;
+  color: white;
+}
+.sidebar-menu .logout-menu {
+  color: white;
+  display: flex;
+  padding: 15px;
+  gap: 15px;
+}
+.sidebar-menu .list-menu.active {
+  background-color: #47a5de;
+  color: white;
+  display: flex;
+  padding: 15px;
+  gap: 15px;
+}
+
+.sidebar-menu .list-menu .icon-menu {
+  width: 20px;
+  height: 20px;
+}
+.sidebar-menu .logout-menu .icon-menu {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-menu .line {
+  margin-top: 30px;
+  width: 100%;
+  color: white;
+  height: 2px;
+  background-color: white;
+}
+
+.list-menu .text-menu {
+  text-decoration: none;
+  color: white;
+}
+
+.burger-icon {
+  width: 25px;
+  height: 25px;
+}
+
+
+@media screen and (max-width : 768px) {
+    .shadow-width {
+        padding-right: 25px;
+      }
+      .sidebar {
+        transform: translateX(-260px);
+      }
+}

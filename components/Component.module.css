@@ -1,0 +1,14 @@
+.component{
+    display: flex;
+    overflow: hidden;
+}
+
+.pages{
+
+    margin-top: 90px;
+  
+}
+
+.tes{
+    width: 260px;
+}
