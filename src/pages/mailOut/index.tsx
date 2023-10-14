@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Component from "../../../components/component";
 import Image from "next/image";
-import style from "./MailEnter.module.css";
+import style from "./MailOut.module.css";
 import checkIcon from "../../../public/icon/check-icon (1).png";
 import eyeIcon from "../../../public/icon/eye-icon.png";
 import printIcon from "../../../public/icon/print-icon.png";
 import mailBlackIcon from "../../../public/icon/mail-black-icon.png";
 import filterIcon from "../../../public/icon/filter-icon.png";
-import { useRouter, Router } from "next/router";
 import LoadingComponent from "../../../components/loadingComponent/loadingComponent";
 
-function MailEnter() {
-  const router = useRouter();
+function MailOut() {
   const [loading, isLoading] = useState(true);
 
   useEffect(() => {
@@ -22,13 +20,14 @@ function MailEnter() {
     };
     test();
   }, []);
+
   return (
     <div>
-      <Component pageTitle="mail-enter">
+      <Component pageTitle="mail-out">
         {loading ? (
           <LoadingComponent />
         ) : (
-          <div className={style["mail-enter-page"]}>
+          <div className={style["mail-out-page"]}>
             {/* header component */}
             <div className={style["header-component"]}>
               <div className={style["header-title"]}>
@@ -37,17 +36,10 @@ function MailEnter() {
                   src={mailBlackIcon}
                   className={style["mail-icon"]}
                 />
-                <p className={style["title-text"]}>DAFTAR SURAT MASUK</p>
+                <p className={style["title-text"]}>DAFTAR SURAT KELUAR</p>
               </div>
               <div className={style["action-btn"]}>
-                <button
-                  className={style["add-btn"]}
-                  onClick={() => {
-                    router.push("/mailEnter/create");
-                  }}
-                >
-                  Tambah
-                </button>
+                <button className={style["add-btn"]}>Tambah</button>
                 <button className={style["delete-btn"]}>Hapus</button>
               </div>
             </div>
@@ -130,4 +122,4 @@ function MailEnter() {
   );
 }
 
-export default MailEnter;
+export default MailOut;

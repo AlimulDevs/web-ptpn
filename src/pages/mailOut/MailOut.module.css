@@ -1,10 +1,10 @@
-.mail-enter-page {
+.mail-out-page {
   margin-left: 20px;
   margin-top: 20px;
   width: 160vh;
 }
 
-.mail-enter-page .header-component {
+.mail-out-page .header-component {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -31,7 +31,7 @@
   font-weight: 600;
 }
 
-.header-component .action-btn .add-btn {
+.action-btn .add-btn {
   background-color: #1dc82b;
   padding: 5px;
   width: 100px;
@@ -39,9 +39,8 @@
   border: none;
   height: 35px;
   border-radius: 8px;
-  text-decoration: none;
 }
-.header-component .action-btn .delete-btn {
+.action-btn .delete-btn {
   background-color: #ff0202;
   padding: 5px;
   width: 100px;
@@ -51,7 +50,7 @@
   border-radius: 8px;
 }
 
-.mail-enter-page .card {
+.mail-out-page .card {
   margin-top: 15px;
   width: 100%;
   padding-top: 15px;
@@ -99,11 +98,11 @@
   border: 1px solid black;
 }
 
-.table .table-header tr {
+.table-header tr {
   text-align: center;
 }
 
-.table .table-header tr th {
+ .table-header tr th {
   border: 1px solid black;
   padding: 5px;
 }

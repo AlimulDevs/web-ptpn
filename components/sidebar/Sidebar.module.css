@@ -123,6 +123,17 @@
   height: 25px;
 }
 
+.logout-menu{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logout-menu:hover{
+  background-color: #47a5de;
+  color: white;
+}
+
 
 @media screen and (max-width : 768px) {
     .shadow-width {

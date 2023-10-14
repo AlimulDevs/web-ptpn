@@ -55,13 +55,16 @@
   .form-btn {
     margin-top: 30px;
     width: 105%;
-    height: 35px;
+    height: 40px;
     background-color: black;
     color: white;
     font-size: 16px;
     font-weight: 600;
     font-family: sans-serif;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   
@@ -126,5 +129,23 @@
     border: none;
     font-weight: bolder;
     background-color: transparent;
+  }
+
+  .form-btn .loading {
+    width: 20px;
+    height: 20px;
+    border: 4px solid white;
+    border-top: 4px solid rgba(255, 255, 255, 0.527);
+    border-radius: 100%;
+    animation: loadingBtn 1s linear infinite;
+  }
+  
+  @keyframes loadingBtn {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
   

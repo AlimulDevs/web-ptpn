@@ -4,6 +4,7 @@ import style from "./Sidebar.module.css";
 import Link from "next/link";
 import { useRouter, Router } from "next/router";
 import homeIcon from "../../public/icon/home-icon.png";
+import profileIcon from "../../public/icon/home-icon.png";
 import mailIcon from "../../public/icon/mail-icon.png";
 import contentIcon from "../../public/icon/content-icon.png";
 import settingIcon from "../../public/icon/setting-icon.png";
@@ -48,6 +49,12 @@ function Sidebar() {
       isSideBarHidden(true);
     }
   }
+
+  function Logout() {
+    localStorage.clear();
+    router.replace("/auth");
+  }
+
   return (
     <>
       <div
@@ -68,32 +75,42 @@ function Sidebar() {
               className={style["icon"]}
             >
               <Image
-                alt=""
+                alt="burger icon"
                 src={burgerIcon}
                 className={style["burger-icon"]}
-              ></Image>
+              />
             </button>
           </div>
           <Image
-            alt=""
+            loading="eager"
+            priority={false}
+            alt="profile icon"
             src={""}
             className={style["photo-profile"]}
-          ></Image>
+          />
           <p className={style["name"]}>ADMIN</p>
           <p className={style["role"]}>SUPER USER</p>
         </div>
 
         <ul className={style["sidebar-menu"]}>
-          {ListMenu.map((menu) => (
+          {ListMenu.map((menu, index) => (
             <Link
               href={menu.url}
+              key={index + 1}
               className={
                 `${style["list-menu"]} ` +
-                `${router.asPath == menu.url ? style["active"] : ""}`
+                `${router.asPath == menu.url ? style["active"] : ""}` +
+                `${
+                  index == 1
+                    ? router.asPath == "/mailEnter/create"
+                      ? style["active"]
+                      : ""
+                    : ""
+                }`
               }
             >
               <Image
-                alt=""
+                alt="menu icon"
                 src={menu.icon}
                 className={style["icon-menu"]}
               />
@@ -102,15 +119,18 @@ function Sidebar() {
           ))}
 
           <div className={style["line"]} />
-          <li className={style["logout-menu"]}>
-            {" "}
+          <Link
+            href={"/auth"}
+            className={style["logout-menu"]}
+            onClick={Logout}
+          >
             <Image
-              alt=""
+              alt="logout icon"
               src={logoutIcon}
               className={style["icon-menu"]}
             />
             <p className={style["text-menu"]}>LOGOUT</p>
-          </li>
+          </Link>
         </ul>
       </div>
     </>

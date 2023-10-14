@@ -7,11 +7,20 @@ import RegisterComponent from "../../../components/auth/register/registerCompone
 
 function Login() {
   const [showRegister, isShowRegister] = useState(false);
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   function changePageAuth() {
     if (showRegister) {
+      setName("");
+      setEmail("");
+      setPassword("");
       isShowRegister(false);
     } else {
+      setName("");
+      setEmail("");
+      setPassword("");
+
       isShowRegister(true);
     }
   }
@@ -21,20 +30,26 @@ function Login() {
         <div className={style["login-bg"]}>
           <div className={style["left-bg"]}>
             <Image
-              alt=""
+              alt="logo image"
               src={Logo}
               className={style["logo-image"]}
             />
             <p className={style["title-bg"]}>PTPN I COT GIREK</p>
           </div>
-          <div className={style["right-bg"]}></div>
+          <div className={style["right-bg"]} />
         </div>
         <div
           className={
             `${style["login-card"]} ` + `${showRegister ? "" : style["active"]}`
           }
         >
-          <LoginComponent functionOnclick={changePageAuth} />
+          <LoginComponent
+            functionOnclick={changePageAuth}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            email={email}
+            password={password}
+          />
         </div>
         <div
           className={
@@ -42,7 +57,15 @@ function Login() {
             `${showRegister ? style["active"] : ""}`
           }
         >
-          <RegisterComponent functionOnClick={changePageAuth} />
+          <RegisterComponent
+            functionOnClick={changePageAuth}
+            name={name}
+            email={email}
+            password={password}
+            setName={setName}
+            setEmail={setEmail}
+            setPassword={setPassword}
+          ></RegisterComponent>
         </div>
       </div>
     </div>
