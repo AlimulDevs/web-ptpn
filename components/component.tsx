@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import Sidebar from "./sidebar/sidebar";
 import style from "./Component.module.css";
 import Header from "./header/header";
@@ -10,13 +10,25 @@ interface ComponentProps {
 
 function Component(props: ComponentProps) {
   const { children, pageTitle } = props;
-
+  const [token, setToken] = useState<string | null>(null);
+  useEffect(() => {
+    const changeToken = async () => {
+      setToken(localStorage.getItem("token"));
+    };
+    changeToken();
+  }, []);
   return (
-    <div className={style["component"]}>
-      <Sidebar />
-      <Header />
+    <div className="">
+      {token == null ? (
+        <div></div>
+      ) : (
+        <div className={style["component"]}>
+          <Sidebar />
+          <Header />
 
-      <div className={style["pages"]}>{children}</div>
+          <div className={style["pages"]}>{children}</div>
+        </div>
+      )}
     </div>
   );
 }

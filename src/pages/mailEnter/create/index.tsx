@@ -4,60 +4,90 @@ import Image from "next/image";
 import mailBlackIcon from "../../../../public/icon/mail-black-icon.png";
 import style from "./CreateMailEnter.module.css";
 import { useRouter } from "next/router";
+import LetterRequest from "../../../../types/letter/letterRequest";
+import { CreateLetterIntegration } from "../../../../integrations";
 
 function CreateMailEnter() {
   const router = useRouter();
 
-  const [noMail, setNoMail] = useState("");
-  const [noMailEnter, setNoMailEnter] = useState("");
+  const [noLetter, setNoLetter] = useState("");
+  const [noLetterEnter, setNoLetterEnter] = useState("");
   const [regarding, setRegarding] = useState("");
   const [attachment, setAttachment] = useState("");
 
-  const [mailDate, setMailDate] = useState("");
-  const [mailAccepted, setMailAccepted] = useState("");
-  const [mailForm, setMailForm] = useState("");
+  const [dateLetter, setDateLetter] = useState("");
+  const [dateEntry, setDateEntry] = useState("");
+  const [letterForm, setLetterForm] = useState("");
 
   const dataLeftInput = [
     {
       label: "NO.SURAT",
       id: "no_mail",
-      state: setNoMail,
+      state: setNoLetter,
+      type: "number",
     },
     {
       label: "NO.SURAT MASUK",
       id: "no_mail_enter",
-      state: setNoMailEnter,
+      state: setNoLetterEnter,
+      type: "text",
     },
     {
       label: "PERIHAL",
       id: "regarding",
       state: setRegarding,
+      type: "text",
     },
     {
       label: "LAMPIRAN",
       id: "attachment",
       state: setAttachment,
+      type: "text",
     },
   ];
   const dataRightInput = [
     {
       label: "TGL.SURAT",
-      id: "mail_date",
-      state: setMailDate,
+      id: "date_letter",
+      state: setDateLetter,
+      type: "date",
     },
     {
       label: "TGL.SURAT DITERIMA",
-      id: "mail_accepted",
-      state: setMailAccepted,
+      id: "mail_accepted_date",
+      state: setDateEntry,
+      type: "date",
     },
     {
       label: "BENTUK SURAT",
       id: "mail_form",
-      state: setMailForm,
+      state: setLetterForm,
+      type: "text",
     },
   ];
 
-  console.log(noMail);
+  console.log(noLetter);
+  const request: LetterRequest = {
+    attachment: attachment,
+    attachment_file_url: "tes",
+    characteristic: "tes",
+    date_entry: dateEntry,
+    date_letter: dateLetter,
+    letter_form: letterForm,
+    letter_type: "tes",
+    no_letter: Number(noLetter),
+    regarding: regarding,
+    status: "",
+  };
+  const LetterCreateHandler = async (e: React.MouseEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = await CreateLetterIntegration(request);
+    console.log(await data);
+    if (await data.isSuccess) {
+      router.push("/mailEnter");
+    }
+  };
 
   return (
     <div>
@@ -74,14 +104,17 @@ function CreateMailEnter() {
             </div>
             <div className={style["card-body"]}>
               <form
-                action="post"
+                onSubmit={LetterCreateHandler}
                 className={style["form"]}
               >
                 <div className={style["form-horizontal"]}>
                   {/* left input */}
                   <div className={style["left-input"]}>
                     {dataLeftInput.map((data, index) => (
-                      <div className={style["group-input"]}>
+                      <div
+                        className={style["group-input"]}
+                        key={index + 1}
+                      >
                         <label
                           htmlFor=""
                           className={style["label"]}
@@ -89,7 +122,7 @@ function CreateMailEnter() {
                           {data.label}
                         </label>
                         <input
-                          type="text"
+                          type={data.type}
                           className={style["input"]}
                           onChange={(e) => {
                             data.state(e.target.value);
@@ -103,7 +136,10 @@ function CreateMailEnter() {
                   {/* right input */}
                   <div className={style["right-input"]}>
                     {dataRightInput.map((data, index) => (
-                      <div className={style["group-input"]}>
+                      <div
+                        className={style["group-input"]}
+                        key={index + 1}
+                      >
                         <label
                           htmlFor=""
                           className={style["label"]}
@@ -111,7 +147,7 @@ function CreateMailEnter() {
                           {data.label}
                         </label>
                         <input
-                          type="text"
+                          type={data.type}
                           id={data.id}
                           className={style["input"]}
                           onChange={(e) => {
@@ -160,17 +196,18 @@ function CreateMailEnter() {
                     id="file-input"
                   />
                 </div>
+
+                <div className={style["form-footer"]}>
+                  <button type="submit">Tambah</button>
+                  <button
+                    onClick={() => {
+                      router.back();
+                    }}
+                  >
+                    Kembali
+                  </button>
+                </div>
               </form>
-              <div className={style["form-footer"]}>
-                <button>Tambah</button>
-                <button
-                  onClick={() => {
-                    router.back();
-                  }}
-                >
-                  Kembali
-                </button>
-              </div>
             </div>
           </div>
         </div>

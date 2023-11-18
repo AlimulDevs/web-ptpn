@@ -17,3 +17,18 @@ model User {
   password String?
   role     String?
 }
+
+model Letters {
+  id                  Int     @id @default(autoincrement())
+  no_letter           Int
+  date_letter         String
+  date_entry          String
+  letter_type         String
+  regarding           String
+  attachment          String
+  letter_form         String
+  status              String
+  characteristic      String
+  attachment_file_url String
+  letter_out          Boolean
+}

@@ -1,6 +1,6 @@
 import { LoginRequest } from "../../types";
 
-export default async function LoginIntegration(props: LoginRequest) {
+export default async function LoginIntegration(request: LoginRequest) {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL + "admin/login";
     const fetchData = await fetch(apiUrl, {
@@ -8,7 +8,7 @@ export default async function LoginIntegration(props: LoginRequest) {
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify(props),
+      body: JSON.stringify(request),
     });
 
     const result = await fetchData.json();

@@ -7,8 +7,11 @@ import usersLineIcon from "../../public/icon/users-line-icon.png";
 import arrowRightIcon from "../../public/icon/arrow-right-icon.png";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import LoadingComponent from "../../components/loadingComponent/loadingComponent";
 import { time } from "console";
+import CheckTokenStorage from "../../middleware/client/checkToken";
+import { stringify } from "querystring";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,16 +46,15 @@ const totalData = [
 ];
 
 export default function Home() {
-  const [loading, isLoading] = useState(true);
+  CheckTokenStorage();
 
-  useEffect(() => {
-    const test = async () => {
-      setTimeout(() => {
-        isLoading(false);
-      }, 500);
-    };
-    test();
-  }, []);
+  const [loading, isLoading] = useState(true);
+  const test = async () => {
+    setTimeout(() => {
+      isLoading(false);
+    }, 500);
+  };
+  test();
 
   return (
     <div>

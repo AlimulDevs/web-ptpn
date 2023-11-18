@@ -55,6 +55,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const data: LoginResponse = {
       id: getUser.id,
       role: String(getUser.role),
+      name : String(getUser.name),
       token: token,
     };
 

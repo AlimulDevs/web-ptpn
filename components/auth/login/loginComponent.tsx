@@ -31,10 +31,10 @@ function LoginComponent(props: LoginComponentProps) {
     if (await fetchData.isSuccess) {
       localStorage.setItem("token", fetchData.data.token);
       localStorage.setItem("role", fetchData.data.role);
+      localStorage.setItem("name", fetchData.data.name);
       router.push("/");
     }
     setLoading(false);
-    console.log(await fetchData);
   };
 
   return (

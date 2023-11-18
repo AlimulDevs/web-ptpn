@@ -4,7 +4,7 @@ import style from "./Sidebar.module.css";
 import Link from "next/link";
 import { useRouter, Router } from "next/router";
 import homeIcon from "../../public/icon/home-icon.png";
-import profileIcon from "../../public/icon/home-icon.png";
+import profileIcon from "../../public/images/user.png";
 import mailIcon from "../../public/icon/mail-icon.png";
 import contentIcon from "../../public/icon/content-icon.png";
 import settingIcon from "../../public/icon/setting-icon.png";
@@ -54,7 +54,8 @@ function Sidebar() {
     localStorage.clear();
     router.replace("/auth");
   }
-
+  const name = localStorage.getItem("name")?.toUpperCase();
+  const role = localStorage.getItem("role")?.toUpperCase();
   return (
     <>
       <div
@@ -85,11 +86,11 @@ function Sidebar() {
             loading="eager"
             priority={false}
             alt="profile icon"
-            src={""}
+            src={profileIcon}
             className={style["photo-profile"]}
           />
-          <p className={style["name"]}>ADMIN</p>
-          <p className={style["role"]}>SUPER USER</p>
+          <p className={style["name"]}>{name}</p>
+          <p className={style["role"]}>{role}</p>
         </div>
 
         <ul className={style["sidebar-menu"]}>
