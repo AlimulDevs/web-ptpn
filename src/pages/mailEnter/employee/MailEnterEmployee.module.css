@@ -1,0 +1,132 @@
+.card {
+  width: 160vh;
+  margin-left: 30px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.card .card-header {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-left: 15px;
+  gap: 15px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid black;
+  align-items: center;
+}
+
+.card-header img {
+  width: 25px;
+  height: 25px;
+}
+
+.card-header p {
+  font-size: 20px;
+}
+
+.form {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-top: 10px;
+}
+
+.form .form-input-first {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 40px;
+}
+
+.left-group-input {
+  width: 50%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.horizontal-input {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.horizontal-input .long-input {
+  padding-left: 10px;
+  width: 250px;
+  height: 25px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+.horizontal-input .sort-input {
+  padding-left: 10px;
+  width: 220px;
+  height: 25px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.horizontal-input label {
+  font-size: 12px;
+}
+
+.right-group-input {
+  width: 50%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form .form-input-second {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-top: 80px;
+  gap: 40px;
+}
+
+.form-input-second .header-input {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.form .form-footer {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  margin-top: 100px;
+}
+
+.form-footer button {
+  width: 100px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+}
+
+.form-footer button:nth-child(1) {
+  background-color: green;
+}
+.form-footer button:nth-child(2) {
+  background-color: red;
+}
+
+@media (max-width: 1115px) {
+  .form .form-input-first {
+    flex-wrap: wrap;
+  }
+  .form .form-input-second {
+    flex-wrap: wrap;
+  }
+}

@@ -10,6 +10,7 @@ import filterIcon from "../../../public/icon/filter-icon.png";
 import { useRouter, Router } from "next/router";
 import LoadingComponent from "../../../components/loadingComponent/loadingComponent";
 import LetterResponse from "../../../types/letter";
+import GetLetterIntegration from "../../../integrations/letter/getLetterIntegration";
 
 interface apiResponse {
   message: string;
@@ -42,7 +43,8 @@ function MailEnter(props: apiResponse) {
             <div className={style["header-component"]}>
               <div className={style["header-title"]}>
                 <Image
-                  alt=""
+                  loading="lazy"
+                  alt="image for mail icon"
                   src={mailBlackIcon}
                   className={style["mail-icon"]}
                 />
@@ -67,7 +69,8 @@ function MailEnter(props: apiResponse) {
               <div className={style["card-header"]}>
                 <button className={style["filter"]}>
                   <Image
-                    alt=""
+                    loading="lazy"
+                    alt="image for filter icon"
                     src={filterIcon}
                     className={style["filter-icon"]}
                   />
@@ -94,12 +97,13 @@ function MailEnter(props: apiResponse) {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((dt) => (
-                      <tr>
+                    {data.map((dt, index) => (
+                      <tr key={index + 1}>
                         <td>
                           <button className={style["no-surat"]}>
                             <Image
-                              alt=""
+                              loading="lazy"
+                              alt="image for check icon"
                               src={checkIcon}
                               className={style["check-icon"]}
                             />
@@ -119,7 +123,8 @@ function MailEnter(props: apiResponse) {
                         <td>
                           <button className={style["eye-btn"]}>
                             <Image
-                              alt=""
+                              loading="lazy"
+                              alt="image for eye icon"
                               src={eyeIcon}
                               className={style["eye-icon"]}
                             />
@@ -127,7 +132,8 @@ function MailEnter(props: apiResponse) {
                           <button className={style["print-btn"]}>
                             {" "}
                             <Image
-                              alt=""
+                              loading="lazy"
+                              alt="image for print icon"
                               src={printIcon}
                               className={style["print-icon"]}
                             />
@@ -148,15 +154,7 @@ function MailEnter(props: apiResponse) {
 }
 
 export async function getServerSideProps() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL + "letter";
-  const fetchData = await fetch(apiUrl, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "GET",
-  });
-
-  const data = await fetchData.json();
+  const data = GetLetterIntegration();
 
   return {
     props: data,

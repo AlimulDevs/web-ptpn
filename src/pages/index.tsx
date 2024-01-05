@@ -12,47 +12,46 @@ import LoadingComponent from "../../components/loadingComponent/loadingComponent
 import { time } from "console";
 import CheckTokenStorage from "../../middleware/client/checkToken";
 import { stringify } from "querystring";
+import GetLetterIntegration from "../../integrations/letter/getLetterIntegration";
+import LetterResponse from "../../types/letter";
+import { HomeResponse } from "../../types";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const listCard = [
-  {
-    icon: mailLineIcon,
-    title: "SURAT MASUK",
-    cardLink: "/mailEnter",
-  },
-  {
-    icon: mailLineIcon,
-    title: "SURAT KELUAR",
+interface DataHomeResponse {
+  message: string;
+  data: HomeResponse;
+}
 
-    cardLink: "/",
-  },
-  {
-    icon: usersLineIcon,
-    title: "AKUN",
-    cardLink: "/",
-  },
-];
-const totalData = [
-  {
-    total_data: 2,
-  },
-  {
-    total_data: 3,
-  },
-  {
-    total_data: 4,
-  },
-];
-
-export default function Home() {
+function Home(props: DataHomeResponse) {
   CheckTokenStorage();
+
+  const listCard = [
+    {
+      icon: mailLineIcon,
+      title: "SURAT MASUK",
+      cardLink: "/mailEnter",
+      total_data: props.data.letter_enter_length,
+    },
+    {
+      icon: mailLineIcon,
+      title: "SURAT KELUAR",
+      cardLink: "/mailOut",
+      total_data: props.data.letter_out_length,
+    },
+    {
+      icon: usersLineIcon,
+      title: "AKUN",
+      cardLink: "/",
+      total_data: props.data.user_length,
+    },
+  ];
 
   const [loading, isLoading] = useState(true);
   const test = async () => {
     setTimeout(() => {
       isLoading(false);
-    }, 500);
+    }, 0);
   };
   test();
 
@@ -71,6 +70,7 @@ export default function Home() {
                 >
                   <div className={style["opal"]}>
                     <Image
+                      loading="lazy"
                       alt="icon-opals"
                       src={list.icon}
                       className={style["icon"]}
@@ -81,9 +81,10 @@ export default function Home() {
                     href={list.cardLink}
                     className={style["button"]}
                   >
-                    {totalData[index].total_data} DATA
+                    {list.total_data} DATA
                     <div className={style["cycle"]}>
                       <Image
+                        loading="lazy"
                         alt="arrow-icon"
                         src={arrowRightIcon}
                         className={style["btn-icon"]}
@@ -99,3 +100,21 @@ export default function Home() {
     </div>
   );
 }
+
+export async function getServerSideProps() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL + "home";
+  const fetchData = await fetch(apiUrl, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  });
+
+  const data = await fetchData.json();
+
+  return {
+    props: data,
+  };
+}
+
+export default Home;

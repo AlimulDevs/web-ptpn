@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import style from "./LoginComponent.module.css";
-import isEmail from "validator/lib/isEmail";
 import { LoginIntegration } from "../../../integrations";
 import { Router, useRouter } from "next/router";
 
@@ -32,7 +31,11 @@ function LoginComponent(props: LoginComponentProps) {
       localStorage.setItem("token", fetchData.data.token);
       localStorage.setItem("role", fetchData.data.role);
       localStorage.setItem("name", fetchData.data.name);
-      router.push("/");
+      if (fetchData.data.role !== "admin") {
+        router.push("/employee/profile");
+      } else {
+        router.push("/");
+      }
     }
     setLoading(false);
   };
@@ -66,7 +69,7 @@ function LoginComponent(props: LoginComponentProps) {
           Password
         </label>
         <input
-          type="text"
+          type="password"
           className={style["input-login"]}
           placeholder="Your password"
           value={password}

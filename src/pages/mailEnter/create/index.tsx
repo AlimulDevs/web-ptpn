@@ -73,11 +73,12 @@ function CreateMailEnter() {
     characteristic: "tes",
     date_entry: dateEntry,
     date_letter: dateLetter,
-    letter_form: letterForm,
+    letter_form: letterForm.toUpperCase(),
     letter_type: "tes",
     no_letter: Number(noLetter),
     regarding: regarding,
     status: "",
+    letter_out: false,
   };
   const LetterCreateHandler = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -96,7 +97,8 @@ function CreateMailEnter() {
           <div className={style["card"]}>
             <div className={style["card-header"]}>
               <Image
-                alt=""
+                loading="lazy"
+                alt="image for mail icon"
                 src={mailBlackIcon}
                 className={style["mail-icon"]}
               />
@@ -122,6 +124,7 @@ function CreateMailEnter() {
                           {data.label}
                         </label>
                         <input
+                          required={true}
                           type={data.type}
                           className={style["input"]}
                           onChange={(e) => {
@@ -141,12 +144,13 @@ function CreateMailEnter() {
                         key={index + 1}
                       >
                         <label
-                          htmlFor=""
+                          htmlFor={data.id}
                           className={style["label"]}
                         >
                           {data.label}
                         </label>
                         <input
+                          required={true}
                           type={data.type}
                           id={data.id}
                           className={style["input"]}
@@ -159,14 +163,14 @@ function CreateMailEnter() {
 
                     <div className={style["group-input"]}>
                       <label
-                        htmlFor=""
+                        htmlFor="status"
                         className={style["label"]}
                       >
                         STATUS & SIFAT
                       </label>
                       <select
                         name=""
-                        id=""
+                        id="status"
                         className={style["input-two"]}
                       >
                         <option value="tes">tes</option>

@@ -32,7 +32,8 @@ function MailOut() {
             <div className={style["header-component"]}>
               <div className={style["header-title"]}>
                 <Image
-                  alt=""
+                  loading="lazy"
+                  alt="image for mail icon"
                   src={mailBlackIcon}
                   className={style["mail-icon"]}
                 />
@@ -50,7 +51,8 @@ function MailOut() {
               <div className={style["card-header"]}>
                 <button className={style["filter"]}>
                   <Image
-                    alt=""
+                    loading="lazy"
+                    alt="image for filter icon"
                     src={filterIcon}
                     className={style["filter-icon"]}
                   />
@@ -81,7 +83,8 @@ function MailOut() {
                       <td>
                         <button className={style["no-surat"]}>
                           <Image
-                            alt=""
+                            loading="lazy"
+                            alt="image for check icon"
                             src={checkIcon}
                             className={style["check-icon"]}
                           />
@@ -95,7 +98,8 @@ function MailOut() {
                       <td>
                         <button className={style["eye-btn"]}>
                           <Image
-                            alt=""
+                            loading="lazy"
+                            alt="image for eye icon"
                             src={eyeIcon}
                             className={style["eye-icon"]}
                           />
@@ -103,7 +107,8 @@ function MailOut() {
                         <button className={style["print-btn"]}>
                           {" "}
                           <Image
-                            alt=""
+                            loading="lazy"
+                            alt="image for print icon"
                             src={printIcon}
                             className={style["print-icon"]}
                           />

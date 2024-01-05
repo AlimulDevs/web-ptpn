@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./Login.module.css";
 import Logo from "../../../public/images/logo.png";
+import Head from "next/head";
 import Image from "next/image";
 import LoginComponent from "../../../components/auth/login/loginComponent";
 import RegisterComponent from "../../../components/auth/register/registerComponent";
@@ -27,6 +28,13 @@ function Login() {
 
   return (
     <div>
+      <Head>
+        <title>PTPN 1</title>
+        <meta
+          name="description"
+          content="ini merupakan web ptpn yang digunakan untuk mempermudah kinerja pabrik dalam memanajemen "
+        />
+      </Head>
       <div className={style["login-main"]}>
         <div className={style["login-bg"]}>
           <div className={style["left-bg"]}>
@@ -34,6 +42,7 @@ function Login() {
               alt="logo image"
               src={Logo}
               className={style["logo-image"]}
+              loading="lazy"
             />
             <p className={style["title-bg"]}>PTPN I COT GIREK</p>
           </div>
